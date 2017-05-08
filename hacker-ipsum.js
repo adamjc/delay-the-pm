@@ -67,6 +67,18 @@ const normaliser = (string, beginning, end) => {
 
 const coinFlip = _ => Math.random() <= 0.5
 
+const grammarise = paragraph => {
+  const sentences = paragraph.split('. ')
+
+  const grammarisedSentences = sentences.map(sentence => {
+    const firstLetter = sentence[0]
+
+    return sentence.replace(firstLetter, firstLetter.toUpperCase())
+  })
+
+  return grammarisedSentences.join('. ')
+}
+
 function getRandomReplacement (token) {
   switch (token) {
     case '${verb}':
@@ -111,5 +123,5 @@ module.exports = _ => {
   const tokens = template.split(' ')
     .map(token => replacePlaceholder(token))
 
-  return tokens.join(' ')
+  return grammarise(tokens.join(' '))
 }
