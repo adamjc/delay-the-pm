@@ -65,12 +65,26 @@ const normaliser = (string, beginning, end) => {
   return string.slice(beginningIndex, endIndex + 1)
 }
 
+const coinFlip = _ => Math.random() <= 0.5
+
 function getRandomReplacement (token) {
   switch (token) {
     case '${verb}':
       return pickRandom(verbs)
     case '${noun}':
-      return pickRandom(nouns)
+      let word = pickRandom(nouns)
+      let nounPrefix
+      let nounSuffix
+
+      if (coinFlip()) {
+        word = `${pickRandom(nounPrefixes)} ${word}`
+      }
+
+      if (coinFlip()) {
+        word = `${word} ${pickRandom(nounSuffixes)}`
+      }
+
+      return word
     case '${number}':
       return `${Math.floor(Math.random() * 10)}.${Math.floor(Math.random() * 10)}.${Math.floor(Math.random() * 10)}`
     case '${date}':
