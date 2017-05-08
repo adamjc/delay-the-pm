@@ -1,5 +1,5 @@
 const verbs = [
-  'ensure',
+  'disable',
   'update',
   'react',
   'erase',
@@ -100,7 +100,7 @@ function getRandomReplacement (token) {
     case '${number}':
       return `${Math.floor(Math.random() * 10)}.${Math.floor(Math.random() * 10)}.${Math.floor(Math.random() * 10)}`
     case '${date}':
-      return new Date()
+      return new Date().toLocaleDateString()
     case '${adjective}':
       return pickRandom(adjectives)
     case '${status}':
