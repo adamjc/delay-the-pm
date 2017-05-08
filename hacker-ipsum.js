@@ -48,7 +48,7 @@ const adjectives = [
 
 const templates = [
   'We need to ${verb} the ${noun} before we can ${verb} the ${noun}',
-  'Prepare to ${verb} version ${number} of ${noun}',
+  'Prepare to ${verb} version ${number} of the ${noun}',
   '${noun} has been ${status} since ${date}. ${verb}!',
   '${verb}. ${verb}. ${verb}.',
   'Yes, of course it is ${adjective}. I made sure to ${verb} and ${verb} the ${noun}',
@@ -84,15 +84,18 @@ function getRandomReplacement (token) {
   }
 }
 
+function replacePlaceholder(string) {
+  const placeholder = normaliser(string, '$', '}')
+  const replacement = getRandomReplacement(placeholder)
+
+  return string.replace(placeholder, replacement)
+}
+
 module.exports = _ => {
   const template = pickRandom(templates)
 
   const tokens = template.split(' ')
-    .map(token => {
-      const normalisedToken = normaliser(token, '$', '}')
-      const replacement = getRandomReplacement(normalisedToken)
-      return token.replace(normalisedToken, replacement)
-    })
+    .map(token => replacePlaceholder(token))
 
   return tokens.join(' ')
 }
