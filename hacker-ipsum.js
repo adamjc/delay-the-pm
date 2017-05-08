@@ -52,7 +52,9 @@ const templates = [
   '${noun} has been ${status} since ${date}. ${verb}!',
   '${verb}. ${verb}. ${verb}.',
   'Yes, of course it is ${adjective}. I made sure to ${verb} and ${verb} the ${noun}',
-  'I know it is ${status}. You did not ${verb} the ${noun} ${noun} ${noun}!'
+  'I know it is ${status}. You did not ${verb} the ${noun} ${noun} ${noun}!',
+  '${noun} is ${adjective}. Please ${verb} and ${verb}',
+  '${verb} the ${noun} before ${noun} becomes ${adjective}'
 ]
 
 const pickRandom = array => array[Math.floor(Math.random() * array.length)]
