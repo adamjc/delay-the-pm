@@ -6,29 +6,42 @@ const verbs = [
   'release',
   'deploy',
   'enable',
-  'delete'
+  'delete',
+  'turn off',
+  'turn on',
+  'push',
+  'pull',
+  'destroy',
+  'hack'
 ]
 
 const nounPrefixes = [
   'dependency',
   'distributed',
-  'super'
+  'super',
+  'matrix',
+  'power',
+  'turbo',
+  'second-gen'
 ]
 
 const nouns = [
-  'matrix',
   'AWS',
   'database',
   'system',
   'node',
   'analyser',
-  'network'
+  'process',
+  'program'
 ]
 
 const nounSuffixes = [
   'project',
   'lambda',
-  'alert'
+  'alert',
+  'matrix',
+  'network',
+  'miner'
 ]
 
 const statuses = [
@@ -51,10 +64,12 @@ const templates = [
   'Prepare to ${verb} version ${number} of the ${noun}',
   '${noun} has been ${status} since ${date}. ${verb}!',
   '${verb}. ${verb}. ${verb}.',
-  'Yes, of course it is ${adjective}. I made sure to ${verb} and ${verb} the ${noun}',
-  'I know it is ${status}. You did not ${verb} the ${noun} ${noun} ${noun}!',
+  'This is ${adjective}. Can you ${verb} and ${verb} the ${noun}?',
+  '${noun} is ${status}. We must not ${verb} the ${noun} ${noun}!',
   '${noun} is ${adjective}. Please ${verb} and ${verb}',
-  '${verb} the ${noun} before ${noun} becomes ${adjective}'
+  '${verb} the ${noun} before ${noun} becomes ${adjective}',
+  '${noun} will be ${status} by ${date} if we do not ${verb} the ${noun}',
+  '${verb} ${number} of ${noun} by ${date}'
 ]
 
 const pickRandom = array => array[Math.floor(Math.random() * array.length)]
