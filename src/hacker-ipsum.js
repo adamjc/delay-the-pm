@@ -63,13 +63,13 @@ var hackerate = (function () {
   const templates = [
     'We need to ${verb} the ${noun} before we can ${verb} the ${noun}',
     'Prepare to ${verb} version ${number} of the ${noun}',
-    '${noun} has been ${status} since ${date}. ${verb}!',
+    'The ${noun} has been ${status} since ${date}. ${verb}!',
     '${verb}. ${verb}. ${verb}.',
     'This is ${adjective}. Can you ${verb} and ${verb} the ${noun}?',
-    '${noun} is ${status}. We must not ${verb} the ${noun} ${noun}!',
-    '${noun} is ${adjective}. Please ${verb} and ${verb}',
+    'The ${noun} is ${status}. We must not ${verb} the ${noun} ${noun}!',
+    'The ${noun} is ${adjective}. Please ${verb} and ${verb}',
     '${verb} the ${noun} before ${noun} becomes ${adjective}',
-    '${noun} will be ${status} by ${date} if we do not ${verb} the ${noun}',
+    'The ${noun} will be ${status} by ${date} if we do not ${verb} the ${noun}',
     '${verb} ${number} of ${noun} by ${date}'
   ]
 
