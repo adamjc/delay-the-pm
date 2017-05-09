@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hacker Speak</title>
+    <link rel="stylesheet" href="./src/css.css">
+  </head>
+  <body>
+    <h1 class="title">Hacker Ipsum</h1>
+    <p id="paragraph"></p>
+    <button id="button">Hackerate</button>
+  </body>
+
+  <script type="text/javascript" src="./src/hacker-ipsum.js"></script>
+  <script type="text/javascript">
+    var button = document.getElementById('button')
+    var paragraph = document.getElementById('paragraph')
+
+    paragraph.innerHTML = hackerate()
+    
+    button.onclick = function () {
+      paragraph.innerHTML = hackerate()
+    }
+  </script>
+</html>
