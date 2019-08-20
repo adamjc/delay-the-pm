@@ -118,7 +118,7 @@ var hackerate = (function () {
       case '${number}':
         return `${Math.floor(Math.random() * 10)}.${Math.floor(Math.random() * 10)}.${Math.floor(Math.random() * 10)}`
       case '${date}':
-        return new Date().toLocaleDateString()
+        return 'today'
       case '${adjective}':
         return pickRandom(adjectives)
       case '${status}':
