@@ -88,11 +88,9 @@ var hackerate = (function () {
   const grammarise = paragraph => {
     const sentences = paragraph.split('. ')
 
-    const grammarisedSentences = sentences.map(sentence => {
-      const firstLetter = sentence[0]
-
-      return sentence.replace(firstLetter, firstLetter.toUpperCase())
-    })
+    const grammarisedSentences = sentences.map(([firstLetter]) => 
+      sentence.replace(firstLetter, firstLetter.toUpperCase())
+    )
 
     return grammarisedSentences.join('. ')
   }
