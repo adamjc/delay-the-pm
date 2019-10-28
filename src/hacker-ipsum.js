@@ -45,11 +45,16 @@ var hackerate = (function () {
     'miner'
   ]
 
-  const statuses = [
-    'offline',
+  const goodStatuses = [
     'online',
     'live',
-    'dead'
+    'ready'
+  ]
+
+  const badStatuses = [
+    'offline',
+    'dead',
+    'broken'
   ]
 
   const adjectives = [
@@ -61,16 +66,23 @@ var hackerate = (function () {
   ]
 
   const templates = [
-    'We need to ${verb} the ${noun} before we can ${verb} the ${noun}',
-    'Prepare to ${verb} version ${number} of the ${noun}',
-    'The ${noun} has been ${status} since ${date}. ${verb}!',
-    '${verb}. ${verb}. ${verb}.',
-    'This is ${adjective}. Can you ${verb} and ${verb} the ${noun}?',
-    'The ${noun} is ${status}. We must not ${verb} the ${noun} ${noun}!',
-    'The ${noun} is ${adjective}. Please ${verb} and ${verb}',
-    '${verb} the ${noun} before ${noun} becomes ${adjective}',
-    'The ${noun} will be ${status} by ${date} if we do not ${verb} the ${noun}',
-    '${verb} ${number} of ${noun} by ${date}'
+    `Sorry, can't right now, we need to {verb} the {noun} before we can {verb} the {noun}`,
+    'One moment, prepare to {verb} the {noun}',
+    'wait, the {noun} has been {badStatus} since yesterday! {verb}!',
+    '{verb}. {verb}. {verb}.',
+    'This is {adjective}. Can you {verb} and {verb} the {noun}?',
+    'The {noun} is {badStatus}. We must not {verb} the {noun} {noun}!',
+    'The {noun} is {adjective}. Please {verb} and {verb}',
+    '{verb} the {noun} before {noun} becomes {adjective}',
+    'The {noun} will be {badStatus} by {date} if we do not {verb} the {noun}',
+    `We've managed to make the {noun} {goodStatus}, now if we can also {verb} it, we might be ok for {date}`
+  ]
+
+  const dates = [
+    'sometime next week',
+    'midnight',
+    'today',
+    'tomorrow'
   ]
 
   const pickRandom = array => array[Math.floor(Math.random() * array.length)]
@@ -97,9 +109,9 @@ var hackerate = (function () {
 
   function getRandomReplacement (token) {
     switch (token) {
-      case '${verb}':
+      case '{verb}':
         return pickRandom(verbs)
-      case '${noun}':
+      case '{noun}':
         let word = pickRandom(nouns)
 
         if (coinFlip()) {
@@ -111,21 +123,21 @@ var hackerate = (function () {
         }
 
         return word
-      case '${number}':
-        return `${Math.floor(Math.random() * 10)}.${Math.floor(Math.random() * 10)}.${Math.floor(Math.random() * 10)}`
-      case '${date}':
-        return 'today'
-      case '${adjective}':
+      case '{date}':
+        return pickRandom(dates)
+      case '{adjective}':
         return pickRandom(adjectives)
-      case '${status}':
-        return pickRandom(statuses)
+      case '{badStatus}':
+        return pickRandom(badStatuses)
+      case '{goodStatus}':
+        return pickRandom(goodStatuses)
       default:
         return token
     }
   }
 
   function replacePlaceholder(string) {
-    const placeholder = normalise(string, '$', '}')
+    const placeholder = normalise(string, '{', '}')
     const replacement = getRandomReplacement(placeholder)
 
     return string.replace(placeholder, replacement)
