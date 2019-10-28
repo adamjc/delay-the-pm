@@ -75,7 +75,7 @@ var hackerate = (function () {
 
   const pickRandom = array => array[Math.floor(Math.random() * array.length)]
 
-  const normaliser = (string, beginning, end) => {
+  function normalise (string, beginning, end) {
     const beginningIndex = string.indexOf(beginning)
     const endIndex = string.indexOf(end)
 
@@ -85,12 +85,12 @@ var hackerate = (function () {
 
   const coinFlip = _ => Math.random() <= 0.5
 
-  const grammarise = paragraph => {
+  function grammarise (paragraph) {
     const sentences = paragraph.split('. ')
 
-    const grammarisedSentences = sentences.map(([firstLetter]) => 
-      sentence.replace(firstLetter, firstLetter.toUpperCase())
-    )
+    const grammarisedSentences = sentences.map(([firstLetter, ...rest]) => {
+      return firstLetter.toUpperCase() + rest.join('')
+    })
 
     return grammarisedSentences.join('. ')
   }
@@ -101,8 +101,6 @@ var hackerate = (function () {
         return pickRandom(verbs)
       case '${noun}':
         let word = pickRandom(nouns)
-        let nounPrefix
-        let nounSuffix
 
         if (coinFlip()) {
           word = `${pickRandom(nounPrefixes)} ${word}`
@@ -127,7 +125,7 @@ var hackerate = (function () {
   }
 
   function replacePlaceholder(string) {
-    const placeholder = normaliser(string, '$', '}')
+    const placeholder = normalise(string, '$', '}')
     const replacement = getRandomReplacement(placeholder)
 
     return string.replace(placeholder, replacement)
